@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<scenario name="/home/comrade/Documents/core_2nodes_network.xml">
+  <networks>
+    <network id="3" name="wlan3" model="basic_range" type="WIRELESS_LAN">
+      <position x="362" y="128" lat="47.57800321064296" lon="-122.12744414800721" alt="2.0"/>
+    </network>
+    <network id="4" name="n4" type="SWITCH">
+      <position x="183" y="386" lat="47.57565797382911" lon="-122.1298561245451" alt="2.0"/>
+    </network>
+    <network id="5" name="n5" type="SWITCH">
+      <position x="538" y="389" lat="47.575630703015776" lon="-122.12507259565714" alt="2.0"/>
+    </network>
+  </networks>
+  <devices>
+    <device id="1" name="n1" type="router" class="" image="">
+      <position x="182" y="215" lat="47.577212386711686" lon="-122.12986959927437" alt="2.0"/>
+      <services>
+        <service name="zebra"/>
+        <service name="OSPFv2"/>
+        <service name="OSPFv3"/>
+        <service name="IPForward"/>
+      </services>
+    </device>
+    <device id="2" name="n2" type="router" class="" image="">
+      <position x="537" y="215" lat="47.577212386711686" lon="-122.1250860703864" alt="2.0"/>
+      <services>
+        <service name="zebra"/>
+        <service name="OSPFv2"/>
+        <service name="OSPFv3"/>
+        <service name="IPForward"/>
+      </services>
+    </device>
+    <device id="6" name="n6" type="PC" class="" image="">
+      <position x="324" y="266" lat="47.57674879471599" lon="-122.12795618771918" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+      </services>
+    </device>
+    <device id="7" name="n7" type="PC" class="" image="">
+      <position x="386" y="266" lat="47.57674879471599" lon="-122.12712075450494" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+      </services>
+    </device>
+  </devices>
+  <links>
+    <link node_one="3" node_two="1">
+      <interface_two id="0" name="eth0" mac="00:00:00:aa:00:00" ip4="192.168.0.2" ip4_mask="24" ip6="2001::1" ip6_mask="128"/>
+    </link>
+    <link node_one="3" node_two="2">
+      <interface_two id="0" name="eth0" mac="00:00:00:aa:00:01" ip4="192.168.0.1" ip4_mask="24" ip6="2001::2" ip6_mask="128"/>
+    </link>
+    <link node_one="4" node_two="1">
+      <interface_two id="1" name="eth1" mac="00:00:00:aa:00:02" ip4="10.0.0.1" ip4_mask="24" ip6="2001:1::1" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" per="0.0" dup="0" jitter="0" type="LinkTypes.WIRED" unidirectional="0"/>
+    </link>
+    <link node_one="4" node_two="6">
+      <interface_two id="0" name="eth0" mac="00:00:00:aa:00:03" ip4="10.0.0.20" ip4_mask="24" ip6="2001:1::20" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" per="0.0" dup="0" jitter="0" type="LinkTypes.WIRED" unidirectional="0"/>
+    </link>
+    <link node_one="5" node_two="2">
+      <interface_two id="1" name="eth1" mac="00:00:00:aa:00:04" ip4="10.0.1.1" ip4_mask="24" ip6="2001:2::1" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" per="0.0" dup="0" jitter="0" type="LinkTypes.WIRED" unidirectional="0"/>
+    </link>
+    <link node_one="5" node_two="7">
+      <interface_two id="0" name="eth0" mac="00:00:00:aa:00:05" ip4="10.0.1.20" ip4_mask="24" ip6="2001:2::20" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" per="0.0" dup="0" jitter="0" type="LinkTypes.WIRED" unidirectional="0"/>
+    </link>
+  </links>
+  <mobility_configurations>
+    <mobility_configuration node="3" model="basic_range">
+      <configuration name="range" value="275"/>
+      <configuration name="bandwidth" value="54000000"/>
+      <configuration name="jitter" value="0"/>
+      <configuration name="delay" value="20000"/>
+      <configuration name="error" value="0"/>
+    </mobility_configuration>
+  </mobility_configurations>
+  <emane_global_configuration>
+    <emulator>
+      <configuration name="antennaprofilemanifesturi" value=""/>
+      <configuration name="controlportendpoint" value="0.0.0.0:47000"/>
+      <configuration name="eventservicedevice" value="ctrl0"/>
+      <configuration name="eventservicegroup" value="224.1.2.8:45703"/>
+      <configuration name="eventservicettl" value="1"/>
+      <configuration name="otamanagerchannelenable" value="1"/>
+      <configuration name="otamanagerdevice" value="ctrl0"/>
+      <configuration name="otamanagergroup" value="224.1.2.8:45702"/>
+      <configuration name="otamanagerloopback" value="0"/>
+      <configuration name="otamanagermtu" value="0"/>
+      <configuration name="otamanagerpartcheckthreshold" value="2"/>
+      <configuration name="otamanagerparttimeoutthreshold" value="5"/>
+      <configuration name="otamanagerttl" value="1"/>
+      <configuration name="stats.event.maxeventcountrows" value="0"/>
+      <configuration name="stats.ota.maxeventcountrows" value="0"/>
+      <configuration name="stats.ota.maxpacketcountrows" value="0"/>
+    </emulator>
+    <core>
+      <configuration name="platform_id_start" value="1"/>
+      <configuration name="nem_id_start" value="1"/>
+      <configuration name="link_enabled" value="1"/>
+      <configuration name="loss_threshold" value="30"/>
+      <configuration name="link_interval" value="1"/>
+      <configuration name="link_timeout" value="4"/>
+    </core>
+  </emane_global_configuration>
+  <session_origin lat="47.5791667" lon="-122.132322" alt="2.0" scale="150.0"/>
+  <session_options>
+    <configuration name="controlnet" value=""/>
+    <configuration name="controlnet0" value=""/>
+    <configuration name="controlnet1" value=""/>
+    <configuration name="controlnet2" value=""/>
+    <configuration name="controlnet3" value=""/>
+    <configuration name="controlnet_updown_script" value=""/>
+    <configuration name="enablerj45" value="1"/>
+    <configuration name="preservedir" value="0"/>
+    <configuration name="enablesdt" value="0"/>
+    <configuration name="sdturl" value="tcp://127.0.0.1:50000/"/>
+  </session_options>
+  <session_metadata>
+    <configuration name="canvas c1" value="{name {Canvas1}}"/>
+    <configuration name="global_options" value="interface_names=no ip_addresses=yes ipv6_addresses=yes node_labels=yes link_labels=yes show_api=no background_images=no annotations=yes grid=yes traffic_start=0"/>
+  </session_metadata>
+  <default_services>
+    <node type="mdr">
+      <service name="zebra"/>
+      <service name="OSPFv3MDR"/>
+      <service name="IPForward"/>
+    </node>
+    <node type="PC">
+      <service name="DefaultRoute"/>
+    </node>
+    <node type="prouter"/>
+    <node type="router">
+      <service name="zebra"/>
+      <service name="OSPFv2"/>
+      <service name="OSPFv3"/>
+      <service name="IPForward"/>
+    </node>
+    <node type="host">
+      <service name="DefaultRoute"/>
+      <service name="SSH"/>
+    </node>
+  </default_services>
+</scenario>
